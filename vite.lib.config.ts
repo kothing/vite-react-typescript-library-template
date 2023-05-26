@@ -1,9 +1,10 @@
-// import dts from "vite-plugin-dts";
-import react from "@vitejs/plugin-react";
+
+
 import path from "path";
 import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 import banner from "vite-plugin-banner";
-
+// import dts from "vite-plugin-dts";
 import packageJson from "./package.json";
 import styleInject from "./plugins/style-inject";
 
