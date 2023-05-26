@@ -1,0 +1,20 @@
+# standard ignores
+node_modules/
+
+# ignore src
+src/**/*
+
+# dev config file
+.husky
+.eslintignore
+.prettierignore
+.prettierrc
+.stylelintignore
+.stylelintrc
+favicon.svg
+index.html
+tsconfig.json
+tsconfig.node.json
+vite.config.ts
+vite.lib.config.ts
+dts-bundle-generator.config.ts
