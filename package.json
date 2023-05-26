@@ -1,10 +1,12 @@
 {
   "name": "vite-typescript-react-library-template",
   "version": "0.0.0",
+  "description": "⚛️ Create a new react library project with Vite, React JS, TypeScript, Eslint, Prettier in just 1 second and you don't need to setup anything.",
   "repository": {
     "type": "git",
     "url": "https://github.com/kothing/vite-typescript-react-library-template"
   },
+  "homepage": "https://github.com/kothing/vite-typescript-react-library-template#readme",
   "author": "kothing",
   "files": [
     "dist"
