@@ -18,6 +18,11 @@
       "require": "./dist/vite-typescript-react-library-template.umd.js"
     }
   },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "license": "MIT",
   "scripts": {
     "dev": "vite --open",
     "build": "tsc && vite build",
