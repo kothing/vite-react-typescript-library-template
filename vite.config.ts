@@ -5,6 +5,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
+  /*
   // when command line: vite
   if (command === "serve") {
     // do something
@@ -22,6 +23,47 @@ export default defineConfig(({ command, mode }) => {
   // such as command line: vite build --mode production
   else if (mode === "production") {
     // do something
+  }
+  */
+
+  if(mode === "lib") {
+    return {
+      base: "./",
+      build: {
+        lib: {
+          entry: path.resolve(__dirname, "src/lib/index.tsx"),
+          name: getPackageNameCamelCase(),
+          formats: ["es", "iife", "umd"],
+          fileName: (format) => fileNames[format],
+        },
+        rollupOptions: {
+          external: ["react", "react-dom"],
+          output: {
+            assetFileNames: `${getPackageName()}.[ext]`,
+            globals: {
+              react: "React",
+              "react-dom": "ReactDOM",
+            },
+            exports: "named",
+          },
+        },
+        emptyOutDir: true,
+        assetsDir: "assets",
+      },
+      plugins: [
+        react({}),
+        banner(pkgInfo),
+        styleInject(),
+        // dts({
+        //   insertTypesEntry: true,
+        // }),
+      ],
+      resolve: {
+        alias: {
+          "@/*": path.resolve(__dirname, "src"),
+        },
+      },
+    }
   }
   
   return {
