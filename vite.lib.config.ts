@@ -35,40 +35,42 @@ const fileNames = {
   umd: `${getPackageName()}.umd.js`,
 };
 
-export default defineConfig({
-  base: "./",
-  build: {
-    lib: {
-      entry: path.resolve(__dirname, "src/lib/index.tsx"),
-      name: getPackageNameCamelCase(),
-      formats: ["es", "iife", "umd"],
-      fileName: (format) => fileNames[format],
-    },
-    rollupOptions: {
-      external: ["react", "react-dom"],
-      output: {
-        assetFileNames: `${getPackageName()}.[ext]`,
-        globals: {
-          react: "React",
-          "react-dom": "ReactDOM",
+export default defineConfig(({ command, mode }) => {
+  return {
+    base: "./",
+    build: {
+      lib: {
+        entry: path.resolve(__dirname, "src/lib/index.tsx"),
+        name: getPackageNameCamelCase(),
+        formats: ["es", "iife", "umd"],
+        fileName: (format) => fileNames[format],
+      },
+      rollupOptions: {
+        external: ["react", "react-dom"],
+        output: {
+          assetFileNames: `${getPackageName()}.[ext]`,
+          globals: {
+            react: "React",
+            "react-dom": "ReactDOM",
+          },
+          exports: "named",
         },
-        exports: "named",
+      },
+      emptyOutDir: true,
+      assetsDir: "assets",
+    },
+    plugins: [
+      react({}),
+      banner(pkgInfo),
+      styleInject(),
+      // dts({
+      //   insertTypesEntry: true,
+      // }),
+    ],
+    resolve: {
+      alias: {
+        "@/*": path.resolve(__dirname, "src"),
       },
     },
-    emptyOutDir: true,
-    assetsDir: "assets",
-  },
-  plugins: [
-    react({}),
-    banner(pkgInfo),
-    styleInject(),
-    // dts({
-    //   insertTypesEntry: true,
-    // }),
-  ],
-  resolve: {
-    alias: {
-      "@/*": path.resolve(__dirname, "src"),
-    },
-  },
+  }
 });
