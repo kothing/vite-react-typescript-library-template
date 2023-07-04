@@ -70,6 +70,8 @@ export default defineConfig(({ command, mode }) => {
     plugins: [react(), tsconfigPaths()],
     server: {
       port: 3030,
+      https: false,
+      open: true
     },
     resolve: {
       alias: {
