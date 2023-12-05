@@ -5,14 +5,22 @@ import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import packageJson from "./package.json";
 
-const packageName = packageJson.name;
+const getPackageName = () => {
+  return packageJson.name;
+};
 
 const getPackageNameCamelCase = () => {
   try {
-    return packageName.replace(/-./g, (char) => char[1].toUpperCase());
+    return getPackageName().replace(/-./g, (char) => char[1].toUpperCase());
   } catch (err) {
     throw new Error("Name property in package.json is missing.");
   }
+};
+
+const fileNames = {
+  es: `${getPackageName()}.es.js`,
+  umd: `${getPackageName()}.umd.js`,
+  iife: `${getPackageName()}.iife.js`,
 };
 
 // https://vitejs.dev/config/
