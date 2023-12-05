@@ -3,6 +3,8 @@ import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
+import banner from "vite-plugin-banner";
+import styleInject from "./plugins/style-inject";
 import packageJson from "./package.json";
 
 const getPackageName = () => {
@@ -22,6 +24,15 @@ const fileNames = {
   umd: `${getPackageName()}.umd.js`,
   iife: `${getPackageName()}.iife.js`,
 };
+
+const pkgInfo = `/**
+ * name: ${packageJson.name}
+ * version: ${packageJson.version}
+ * description: ${packageJson.description}
+ * author: ${packageJson.author}
+ * homepage: ${packageJson.homepage}
+ * repository: ${packageJson.repository.url}
+ */`;
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
