@@ -3,6 +3,14 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
+const getPackageNameCamelCase = () => {
+  try {
+    return getPackageName().replace(/-./g, (char) => char[1].toUpperCase());
+  } catch (err) {
+    throw new Error("Name property in package.json is missing.");
+  }
+};
+
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   /*
