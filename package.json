@@ -82,6 +82,5 @@
     "./**/*.{js,cjs,ts,css,scss,sass,html,json,md}": [
       "prettier . --loglevel warn --write "
     ]
-  },
-  "license": "MIT"
+  }
 }
